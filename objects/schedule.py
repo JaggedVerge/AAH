@@ -1,7 +1,6 @@
 '''
 Holds schedule given task durations and machine numbers
 '''
-from exception import ValueError
 from itertools import product
 from random import choice 
 
