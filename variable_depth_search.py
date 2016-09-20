@@ -64,10 +64,10 @@ def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=[]):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Parameters for variable depth search')
-    parser.add_argument('-number_of_machines', type=int, default=2)
-    parser.add_argument('-depth', type=int, default=2)
-    parser.add_argument('-number_of_tasks', type=int, default=200)
-    parser.add_argument('-tasks', type=list, default=[])
+    parser.add_argument('--number_of_machines', type=int, default=2)
+    parser.add_argument('--depth', type=int, default=2)
+    parser.add_argument('--number_of_tasks', type=int, default=200)
+    parser.add_argument('--tasks', type=list, default=[])
     args = parser.parse_args()
 
     var_depth_search(
