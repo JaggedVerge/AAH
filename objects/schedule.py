@@ -1,7 +1,7 @@
 '''
 Holds schedule given task durations and machine numbers
 '''
-
+from exception import ValueError
 from itertools import product
 from random import choice 
 
@@ -50,7 +50,7 @@ class Schedule(object):
                 yield self._find_neighbour(machine2, job1, job2)
 
         else:
-            pass
+            raise ValueError('Limit has to be -1 or a positive integer')
 
     def durationtolist(self):
         '''
