@@ -62,7 +62,11 @@ class Schedule(object):
         '''
         Sort the machines in decreasing order based on the makespan
         '''
-        return sorted(machineschedule, reverse=True, key=lambda x: x.span)
+        if all(isinstance(mach, Machine) for mach in machineschedule):
+            return sorted(
+                machineschedule, reverse=True, key=lambda x: x.span)
+        else:
+            raise ValueError('Machineschedule contains a non machine')
 
     def _create_id(self):
         '''Creates an unique ID for the schedule'''

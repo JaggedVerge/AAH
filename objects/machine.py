@@ -19,7 +19,10 @@ class Machine(object):
         '''
         sorts the durations
         '''
-        return sorted(tasks)
+        if all(isinstance(duration, int) for duration in tasks):
+            return sorted(tasks)
+        else:
+            raise ValueError('Tasks contains a non integer')
 
     def add_job(self, job):
         '''
