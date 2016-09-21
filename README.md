@@ -24,3 +24,4 @@ Options:
 ```
 # Misc
 * You can load a custom list of tasks through the function using the tasks argument.
+* The tests are implemented through pytest.
