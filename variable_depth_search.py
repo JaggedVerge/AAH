@@ -6,7 +6,7 @@ from collections import namedtuple
 import random
 import time
 
-from heuristic import snake_heuristic
+from .heuristic import snake_heuristic
 
 BIGM = 100000
 LONGEST_DURATION = 100
