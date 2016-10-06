@@ -6,12 +6,12 @@ from collections import namedtuple
 import random
 import time
 
-from heuristic import snake_heuristic
+from .heuristic import snake_heuristic
 
 BIGM = 100000
 LONGEST_DURATION = 100
 
-def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=[], limit=-1):
+def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=None, limit=-1):
     '''
     :number_of_machines: required for the heuristic and objects
     :depth: the max length of a path
