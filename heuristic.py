@@ -2,8 +2,8 @@
 Function that creates an initial schedule
 '''
 
-from objects.machine import Machine
-from objects.schedule import Schedule
+from .objects.machine import Machine
+from .objects.schedule import Schedule
 
 def snake_heuristic(tasks, number_of_machines):
     '''
