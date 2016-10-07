@@ -18,8 +18,17 @@ def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=None, lim
     :number_of_tasks: not needed if we are reading in tasks from file
     :tasks: empty implies the tasks are randomly generated
 
-    If the first schedule has the best makespan then we will 
-    terminate the search.
+    pseudo-code for variable depth search:
+    start with a solution from a heuristic
+    while the best solution isn't the first one in the path:
+        for i in range(depth):
+           using the last solution in the path, look at all its neighbours
+           choose the best neighbour such that it isn't repeated in the path
+
+    In this case, the neighbourhood is defined in .schedule
+
+    Variable depth search is an extension of local search and it excels in escaping
+    local minimums.
     '''
     start = time.time()
     if not tasks:
