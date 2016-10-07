@@ -20,7 +20,6 @@ def test_input_success():
     '''
     tasks = [1, 2]
     m = Machine(tasks)
-    assert True
 
 def test_input_fail():
     '''
