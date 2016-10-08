@@ -8,7 +8,7 @@ from collections import namedtuple
 import random
 import time
 
-from .heuristic import snake_heuristic
+from heuristic import snake_heuristic
 
 BIGM = 100000
 LONGEST_DURATION = 100
@@ -76,16 +76,21 @@ def print_output(
     '''
     To make the var_depth_search a bit easier to read
     '''
-    print '-'*20
-    print 'Number of machines: {}'.format(number_of_machines)
-    print 'Number of tasks: {}'.format(number_of_tasks)
-    print 'Variable depth: {}'.format(depth)
-    print '-'*20
-    print 'Best found makespan is {}'.format(schedule.makespan)
-    print 'The spans are: {}'.format([machine.span for machine in schedule.machineschedule])
-    print 'The schedule is:'
+    line_sep = '-'*20
+
+    print(line_sep)
+    print("""
+Number of machines: {number_of_machines}
+Number of tasks: {number_of_tasks}
+Variable depth: {depth}
+""".format(number_of_machines=number_of_machines, number_of_tasks=number_of_tasks, depth=depth))
+    print(line_sep)
+    print("""
+Best found makespan is {schedule_makespan}
+The spans are: {spans}
+The schedule is:""".format(schedule_makespan = schedule.makespan, spans=[machine.span for machine in schedule.machineschedule]))
     for durationlist in schedule.durationtolist():
-        print durationlist 
+        print(durationlist)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
