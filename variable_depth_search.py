@@ -65,10 +65,7 @@ def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=None, lim
 
         first_data = path[0]
         if first_data.makespan == min(vertex.makespan for vertex in path):
-            return {
-                "schedule": first_data.schedule,
-                "number_of_tasks": number_of_tasks,
-            }
+            return first_data.schedule
 
         else:
             sorted_path = sorted(path, key=lambda x: x.makespan)
@@ -99,13 +96,17 @@ if __name__ == '__main__':
     parser.add_argument('--limit', type=int, default=-1)
     args = parser.parse_args()
 
+    tasks = []
+    number_of_tasks = len(tasks) if tasks else args.number_of_tasks
+
     start = time.time()
     res = var_depth_search(
         args.number_of_machines,
         args.depth,
-        args.number_of_tasks)
+        number_of_tasks)
     duration = time.time() - start
+
     print_output(
-        args.number_of_machines, res["number_of_tasks"], args.depth,
-        res["schedule"])
+        args.number_of_machines, number_of_tasks, args.depth,
+        res)
     print('Solution found in {0:.2f} seconds.'.format(duration))
