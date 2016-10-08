@@ -67,7 +67,6 @@ def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=None, lim
         if first_data.makespan == min(vertex.makespan for vertex in path):
             return {
                 "schedule": first_data.schedule,
-                "number_of_machines": number_of_machines,
                 "number_of_tasks": number_of_tasks,
             }
 
@@ -107,6 +106,6 @@ if __name__ == '__main__':
         args.number_of_tasks)
     duration = time.time() - start
     print_output(
-        res["number_of_machines"], res["number_of_tasks"], args.depth,
+        args.number_of_machines, res["number_of_tasks"], args.depth,
         res["schedule"])
     print('Solution found in {0:.2f} seconds.'.format(duration))
