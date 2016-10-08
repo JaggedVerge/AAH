@@ -1,6 +1,8 @@
 '''
 Main code to run the variable depth search on instances
 '''
+from __future__ import print_function
+
 import argparse
 from collections import namedtuple
 import random
@@ -10,6 +12,7 @@ from .heuristic import snake_heuristic
 
 BIGM = 100000
 LONGEST_DURATION = 100
+
 
 def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=None, limit=-1):
     '''
@@ -30,7 +33,6 @@ def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=None, lim
     Variable depth search is an extension of local search and it excels in escaping
     local minimums.
     '''
-    start = time.time()
     if not tasks:
         tasks = [random.randint(0, LONGEST_DURATION) for _ in range(number_of_tasks)]
     else:
@@ -63,10 +65,9 @@ def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=None, lim
 
         first_data = path[0]
         if first_data.makespan == min(vertex.makespan for vertex in path):
-            duration = time.time() - start
             print_output(
                 number_of_machines, number_of_tasks, depth,
-                schedule, duration)
+                schedule)
             return first_data.schedule 
 
         else:
@@ -74,7 +75,7 @@ def var_depth_search(number_of_machines, depth, number_of_tasks, tasks=None, lim
             path = [sorted_path[0]]
 
 def print_output(
-        number_of_machines, number_of_tasks, depth, schedule, duration):
+        number_of_machines, number_of_tasks, depth, schedule):
     '''
     To make the var_depth_search a bit easier to read
     '''
@@ -83,7 +84,6 @@ def print_output(
     print 'Number of tasks: {}'.format(number_of_tasks)
     print 'Variable depth: {}'.format(depth)
     print '-'*20
-    print 'Solution found in {0:.2f} seconds.'.format(duration)
     print 'Best found makespan is {}'.format(schedule.makespan)
     print 'The spans are: {}'.format([machine.span for machine in schedule.machineschedule])
     print 'The schedule is:'
@@ -99,7 +99,10 @@ if __name__ == '__main__':
     parser.add_argument('--limit', type=int, default=-1)
     args = parser.parse_args()
 
+    start = time.time()
     var_depth_search(
         args.number_of_machines,
         args.depth,
         args.number_of_tasks)
+    duration = time.time() - start
+    print('Solution found in {0:.2f} seconds.'.format(duration))
